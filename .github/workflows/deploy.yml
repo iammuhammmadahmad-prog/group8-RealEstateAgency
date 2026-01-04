@@ -16,8 +16,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages  # mandatory for Pages deployment
-
+      name: github-pages
+      url: ${{ steps.deploy-to-pages.outputs.page_url }}
     steps:
       # 1. Checkout your repository
       - name: Checkout repository
