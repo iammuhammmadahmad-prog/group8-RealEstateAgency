@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-
 permissions:
   contents: read
   pages: write
@@ -15,7 +14,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages  # mandatory for Pages deployment
+      name: github-pages
 
     steps:
       # 1️⃣ Checkout repository
@@ -24,19 +23,15 @@ jobs:
 
       # 2️⃣ Configure Pages
       - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4  # Changed to v4
 
-      # 3️⃣ Build project (optional, uncomment if needed)
-      # - name: Build project
-      #   run: |
-      #     npm install
-      #     npm run build
+      # 3️⃣ Upload artifacts
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'  # Upload entire root directory
 
       # 4️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-
-      # 5️⃣ Output the URL of the deployed site
-      - name: Show GitHub Pages URL
-        run: echo "✅ Deployed site URL: ${{ steps.pages.outputs.page_url }}"
