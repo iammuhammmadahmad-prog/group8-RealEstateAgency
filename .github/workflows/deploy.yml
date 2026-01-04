@@ -1,12 +1,10 @@
 name: Deploy to GitHub Pages
 
-# Trigger deployment on push to the main branch
 on:
   push:
     branches:
-      - main  # change if your main branch has a different name
+      - main  # change if your branch is different
 
-# Give necessary permissions for Pages deployment
 permissions:
   contents: read
   pages: write
@@ -16,24 +14,28 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deploy-to-pages.outputs.page_url }}
+      name: github-pages  # mandatory for Pages deployment
+
     steps:
-      # 1. Checkout your repository
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Configure GitHub Pages
+      # 2️⃣ Configure Pages
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
 
-      # 3. Build your site (optional, if you use a build step)
-      # Uncomment and modify the following if your project needs building
+      # 3️⃣ Build project (optional, uncomment if needed)
       # - name: Build project
       #   run: |
       #     npm install
       #     npm run build
 
-      # 4. Deploy to GitHub Pages
+      # 4️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
+      # 5️⃣ Output the URL of the deployed site
+      - name: Show GitHub Pages URL
+        run: echo "✅ Deployed site URL: ${{ steps.pages.outputs.page_url }}"
