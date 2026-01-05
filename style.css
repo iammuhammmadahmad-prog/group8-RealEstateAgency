@@ -353,15 +353,15 @@ footer p {
 
 /* Individual images */
 #slide1::after {
-    background-image: url("../images/villas.jpg");
+    background-image: url("villas.jpg");
 }
 
 #slide2::after {
-    background-image: url("../images/apartment.jpg");
+    background-image: url("apartment.jpg");
 }
 
 #slide3::after {
-    background-image: url("../images/commercial.jpg");
+    background-image: url("commercial.jpg");
 }
 
 
